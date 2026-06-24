@@ -1,0 +1,228 @@
+<style>
+@media print{
+body *{
+visibility:hidden;
+}
+#printArea,#printArea *{
+visibility:visible;
+}
+#printArea{
+position:absolute;
+left:0;
+top:0;
+width:100%;
+}
+.no-print{
+display:none !important;
+}
+}
+</style>
+
+<div style="max-width:1000px;margin:auto;font-family:'Noto Sans Kannada',Arial,sans-serif;padding:15px;">
+
+<h2 style="background:#c62828;color:#fff;padding:15px;text-align:center;border-radius:10px;">
+🥚🍌EGG & BANANA ಪೌಷ್ಟಿಕ ಆಹಾರ ವೆಚ್ಚ ಲೆಕ್ಕಾಚಾರ ರಚನೆ ಮನೋಹರ್‌ ಆರ್‌ ಕೆ.ಜಿ.ಎಫ್
+</h2>
+
+<div class="no-print" style="background:#fff59d;padding:15px;border-radius:10px;margin-bottom:15px;text-align:center;">
+
+<label style="font-weight:bold;font-size:18px;">
+ಮೊಟ್ಟೆ ಪಡೆಯುವ ಮಕ್ಕಳ ಸಂಖ್ಯೆ :
+</label>
+
+<input type="number" id="eggStudents" value="0"
+oninput="calculateNutrition()"
+style="width:120px;padding:8px;margin:5px;border:2px solid #999;border-radius:5px;">
+
+<label style="font-weight:bold;font-size:18px;">
+ಬಾಳೆಹಣ್ಣು ಪಡೆಯುವ ಮಕ್ಕಳ ಸಂಖ್ಯೆ :
+</label>
+
+<input type="number" id="bananaStudents" value="0"
+oninput="calculateNutrition()"
+style="width:120px;padding:8px;margin:5px;border:2px solid #999;border-radius:5px;">
+
+<button onclick="calculateNutrition()"
+style="background:#1565c0;color:white;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;margin:5px;">
+📊 ಲೆಕ್ಕ ಹಾಕಿ
+</button>
+
+<button onclick="window.print()"
+style="background:#2e7d32;color:white;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;margin:5px;">
+🖨️ Print
+</button>
+
+</div>
+
+<div id="printArea">
+
+<!-- ಮೊಟ್ಟೆ ಪೌಷ್ಟಿಕ ಆಹಾರ -->
+
+<table style="width:100%;border-collapse:collapse;text-align:center;margin-bottom:20px;">
+
+<tr style="background:#c62828;color:white;">
+<th colspan="2" style="border:2px solid #000;padding:12px;">
+🥚 1 ರಿಂದ 10ನೇ ತರಗತಿಗಳಿಗೆ ಮೊಟ್ಟೆ ಪೌಷ್ಟಿಕ ಆಹಾರ
+</th>
+</tr>
+
+<tr style="background:#ffe082;">
+<th style="border:2px solid #000;">ಪೌಷ್ಟಿಕ ಆಹಾರ</th>
+<th style="border:2px solid #000;">ನಿಗದಿಪಡಿಸಿದ ಮೊತ್ತ</th>
+</tr>
+
+<tr>
+<td style="border:2px solid #000;">ಮೊಟ್ಟೆ (ವಾರಕ್ಕೆ–1) ವಿತರಣೆ</td>
+<td style="border:2px solid #000;">₹ 5.00</td>
+</tr>
+
+<tr>
+<td style="border:2px solid #000;">ಸಾಗಾಣಿಕೆ ವೆಚ್ಚ</td>
+<td style="border:2px solid #000;">₹ 0.20</td>
+</tr>
+
+<tr>
+<td style="border:2px solid #000;">ಮೊಟ್ಟೆ ಬೇಯಿಸುವ ಇಂಧನ ಮತ್ತು ಇತರೆ ವೆಚ್ಚ</td>
+<td style="border:2px solid #000;">₹ 0.30</td>
+</tr>
+
+<tr>
+<td style="border:2px solid #000;">ಮೊಟ್ಟೆ ಬೇಯಿಸುವ ಹೆಚ್ಚುವರಿ ವೆಚ್ಚ</td>
+<td style="border:2px solid #000;">₹ 0.50</td>
+</tr>
+
+<tr style="background:#c8e6c9;font-weight:bold;">
+<td style="border:2px solid #000;">ಒಟ್ಟು ವೆಚ್ಚ</td>
+<td style="border:2px solid #000;">₹ 6.00</td>
+</tr>
+
+<tr style="background:#bbdefb;font-weight:bold;">
+<td style="border:2px solid #000;">ಮೊಟ್ಟೆ ಪಡೆಯುವ ಮಕ್ಕಳು</td>
+<td id="eggCount" style="border:2px solid #000;">0</td>
+</tr>
+
+<tr style="background:#dcedc8;font-weight:bold;">
+<td style="border:2px solid #000;">ಒಟ್ಟು ಮೊಟ್ಟೆ ವೆಚ್ಚ</td>
+<td id="eggTotal" style="border:2px solid #000;">₹ 0.00</td>
+</tr>
+
+</table>
+
+<!-- ಬಾಳೆಹಣ್ಣು ಪೌಷ್ಟಿಕ ಆಹಾರ -->
+
+<table style="width:100%;border-collapse:collapse;text-align:center;margin-bottom:20px;">
+
+<tr style="background:#f57f17;color:white;">
+<th colspan="2" style="border:2px solid #000;padding:12px;">
+🍌 1 ರಿಂದ 10ನೇ ತರಗತಿಗಳಿಗೆ ಬಾಳೆಹಣ್ಣು ಪೌಷ್ಟಿಕ ಆಹಾರ
+</th>
+</tr>
+
+<tr style="background:#fff176;">
+<th style="border:2px solid #000;">ಪೌಷ್ಟಿಕ ಆಹಾರ</th>
+<th style="border:2px solid #000;">ನಿಗದಿಪಡಿಸಿದ ಮೊತ್ತ</th>
+</tr>
+
+<tr>
+<td style="border:2px solid #000;">ಮೊಟ್ಟೆ ಸೇವಿಸದ ಮಕ್ಕಳಿಗೆ ಬಾಳೆಹಣ್ಣು</td>
+<td style="border:2px solid #000;">₹ 5.80</td>
+</tr>
+
+<tr>
+<td style="border:2px solid #000;">ಸಾಗಾಣಿಕೆ ವೆಚ್ಚ</td>
+<td style="border:2px solid #000;">₹ 0.20</td>
+</tr>
+
+<tr style="background:#c8e6c9;font-weight:bold;">
+<td style="border:2px solid #000;">ಒಟ್ಟು ವೆಚ್ಚ</td>
+<td style="border:2px solid #000;">₹ 6.00</td>
+</tr>
+
+<tr style="background:#bbdefb;font-weight:bold;">
+<td style="border:2px solid #000;">ಬಾಳೆಹಣ್ಣು ಪಡೆಯುವ ಮಕ್ಕಳು</td>
+<td id="bananaCount" style="border:2px solid #000;">0</td>
+</tr>
+
+<tr style="background:#dcedc8;font-weight:bold;">
+<td style="border:2px solid #000;">ಒಟ್ಟು ಬಾಳೆಹಣ್ಣು ವೆಚ್ಚ</td>
+<td id="bananaTotal" style="border:2px solid #000;">₹ 0.00</td>
+</tr>
+
+</table>
+
+<!-- ಅಂತಿಮ ಒಟ್ಟು -->
+
+<table style="width:100%;border-collapse:collapse;text-align:center;">
+
+<tr style="background:#1565c0;color:white;">
+<th colspan="2" style="border:2px solid #000;padding:12px;">
+📊 ಅಂತಿಮ ಒಟ್ಟು ಲೆಕ್ಕಾಚಾರ
+</th>
+</tr>
+
+<tr>
+<td style="border:2px solid #000;font-weight:bold;">
+ಒಟ್ಟು ಮಕ್ಕಳು
+</td>
+<td id="grandStudents" style="border:2px solid #000;">
+0
+</td>
+</tr>
+
+<tr style="background:#81c784;font-size:22px;font-weight:bold;">
+<td style="border:2px solid #000;">
+ಒಟ್ಟು ಮೊತ್ತ
+</td>
+<td id="grandTotal" style="border:2px solid #000;">
+₹ 0.00
+</td>
+</tr>
+
+</table>
+
+<br>
+
+<div style="text-align:center;background:#e3f2fd;padding:10px;border:2px solid #1565c0;border-radius:8px;font-weight:bold;">
+🌐 SCHOOL RESOURCE CENTER
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function calculateNutrition(){
+
+let egg =
+parseFloat(document.getElementById("eggStudents").value)||0;
+
+let banana =
+parseFloat(document.getElementById("bananaStudents").value)||0;
+
+let eggAmount = egg * 6;
+let bananaAmount = banana * 6;
+
+let totalStudents = egg + banana;
+let totalAmount = eggAmount + bananaAmount;
+
+document.getElementById("eggCount").innerHTML = egg;
+document.getElementById("bananaCount").innerHTML = banana;
+
+document.getElementById("eggTotal").innerHTML =
+"₹ " + eggAmount.toFixed(2);
+
+document.getElementById("bananaTotal").innerHTML =
+"₹ " + bananaAmount.toFixed(2);
+
+document.getElementById("grandStudents").innerHTML =
+totalStudents;
+
+document.getElementById("grandTotal").innerHTML =
+"₹ " + totalAmount.toFixed(2);
+
+}
+
+calculateNutrition();
+
+</script>
